@@ -3,7 +3,7 @@ import { Routes, Route, Link, useParams } from "react-router-dom";
 
 function Notfound(){
     return (
-        </>
+        <>
             <h1>404</h1>
             <div>페이지를 찾을 수 없습니다...</div>
         </>
@@ -12,7 +12,7 @@ function Notfound(){
 
 function Home() {
     return (
-        </>
+        <>
             <h1>대문</h1>
         </>
     );
@@ -21,7 +21,7 @@ function Home() {
 function Doc() {
     const { id } = useParams();
     return (
-        </>
+        <>
             <h1>{id}</h1>
         </>
     );
