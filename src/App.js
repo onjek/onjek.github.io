@@ -25,7 +25,7 @@ function Doc() {
     useEffect(() => {
         async function getDoc(){
             try{
-                const res = await fetch(`/api/docs?id=${id}`);
+                const res = await fetch(`/api/docs?id=${encodeURIComponent(id)}`);
                 if(!res.ok) throw new Error('문서 불러오기 실패');
                 const text = await res.text();
                 setContent(md.render(text));
