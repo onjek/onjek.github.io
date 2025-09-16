@@ -47,8 +47,8 @@ function Doc(){
 export default function App() {
     const [doclist, setDoclist] = useState([]);
     const [target, setTarget] = useState('');
-    const [visibility, setVisibility] = useState(true);
-    const searchWrapper = useRef();
+    const [visibility, setVisibility] = useState(false);
+    const search = useRef();
     
     useEffect(() => {
         async function getDoclist(){
@@ -65,31 +65,25 @@ export default function App() {
     }, []);
     
     useEffect(() => {
-        function clickOutside(e){
-            if(searchWrapper.current && !searchWrapper.current.contains(e.target)){
-                setVisibility(false);
-            }
-        }
-        
-        document.addEventListener('mousedown', clickOutside);
-        return () => document.removeEventListener('mousedown', clickOutside);
+        if(!search.current) return; 
+        const listOff = () => setTimeout(() => setVisibility(false), 100);
+        search.current.addEventListener('focusout', listOff);
+        return () => search.current.removeEventListener('focusout', listOff);
     }, []);
     
     return (
         <>
-            <div ref={searchWrapper}>
-                <nav>
-                    <Link to="/" id="logo"><img src="/data/imgs/logo.png"/></Link>
-                    <input spellCheck="false" id="search" onFocus={() => setVisibility(true)} onChange={e => setTarget(e.target.value)} />
-                </nav>
-                {visibility && (
-                <div id="searchlist">
-                    {doclist.filter(doc => doc.name.startsWith(target)).sort((a, b) => a.name.length - b.name.length).slice(0, 5).map(doc => (
-                        <Link to={`/doc/${doc.name.replace('.md', '')}`} key={doc.name.replace('.md', '')}><div>{doc.name.replace('.md', '')}</div></Link>
-                    ))}
-                </div>
-                )}
+            <nav>
+                <Link to="/" id="logo"><img src="/data/imgs/logo.png"/></Link>
+                <input spellCheck="false" id="search" onFocus={() => setVisibility(true)} onChange={e => setTarget(e.target.value)} ref={search} />
+            </nav>
+            {visibility && (
+            <div id="searchlist">
+                {doclist.filter(doc => doc.name.startsWith(target)).sort((a, b) => a.name.length - b.name.length).slice(0, 5).map(doc => (
+                    <Link to={`/doc/${doc.name.replace('.md', '')}`} key={doc.name.replace('.md', '')}><div>{doc.name.replace('.md', '')}</div></Link>
+                ))}
             </div>
+            )}
             <Routes>
                 <Route path="/" element={<Navigate to="/doc/대문" replace />} />
                 <Route path="/doc/:id" element={<Doc />} />
