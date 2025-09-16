@@ -66,8 +66,8 @@ export default function App() {
     return (
         <>
             <nav>
-                <img src="/data/imgs/logo.png" id="logo" />
-                <input spellCheck="false" id="search" onFocus={() => setVisibility(true)} onChange={e => setTarget(e.target.value)} />
+                <Link to="/" id="logo"><img src="/data/imgs/logo.png"/></Link>
+                <input spellCheck="false" id="search" onClick={e => e.stopPropagation()} onFocus={() => setVisibility(true)} onChange={e => setTarget(e.target.value)} />
             </nav>
             {visibility && (
             <div id="searchlist">
