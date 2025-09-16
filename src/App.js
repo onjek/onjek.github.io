@@ -18,7 +18,7 @@ function Notfound(){
     );
 }
 
-function Doc() {
+function Doc(){
     const { id } = useParams();
     const [content, setContent] = useState("불러오는 중...");
     
@@ -45,13 +45,44 @@ function Doc() {
 }
 
 export default function App() {
+    const [doclist, setDoclist] = useState([]);
+    const [target, setTarget] = useState('');
+    const [visibility, setVisibility] = useState(true);
+    
+    useEffect(() => {
+        async function getDoclist(){
+            try{
+                const res = await fetch(`/api/getDoclist`);
+                if(!res.ok) throw new Error('문서 목록 불러오기 실패');
+                const json = await res.json();
+                setDoclist(json);
+            } catch(err) {
+                console.log(`에러: ${err.message}`);
+            }
+        }
+        getDoclist();
+    }, []);
+    
     return (
-        <div>
-            <Routes>
-                <Route path="/" element={<Navigate to="/doc/대문" replace />} />
-                <Route path="/doc/:id" element={<Doc />} />
-                <Route path="*" element={<Notfound />} />
-            </Routes>
-        </div>
+        <>
+            <nav>
+                <img src="/data/imgs/logo.png" id="logo" />
+                <input spellCheck="false" id="search" onFocus={() => setVisibility(true)} onChange={e => setTarget(e.target.value)} />
+            </nav>
+            {visibility && (
+            <div id="searchlist">
+                {doclist.filter(doc => doc.name.startsWith(target)).sort((a, b) => a.name.length - b.name.length).slice(0, 5).map(doc => (
+                    <Link to={`/doc/${doc.path}`} key={doc.name}><div>{doc.name}</div></Link>
+                ))}
+            </div>
+            )}
+            <div onClick={() => setVisibility(false)}>
+                <Routes>
+                    <Route path="/" element={<Navigate to="/doc/대문" replace />} />
+                    <Route path="/doc/:id" element={<Doc />} />
+                    <Route path="*" element={<Notfound />} />
+                </Routes>
+            </div>
+        </>
     );
 }
