@@ -56,7 +56,7 @@ export default function App() {
                 const res = await fetch(`/api/getDoclist`);
                 if(!res.ok) throw new Error('문서 목록 불러오기 실패');
                 const json = await res.json();
-                setDoclist(json);
+                setDoclist(json[0].contents);
             } catch(err) {
                 console.log(`에러: ${err.message}`);
             }
@@ -85,7 +85,7 @@ export default function App() {
                 {visibility && (
                 <div id="searchlist">
                     {doclist.filter(doc => doc.name.startsWith(target)).sort((a, b) => a.name.length - b.name.length).slice(0, 5).map(doc => (
-                        <Link to={`/doc/${doc.path}`} key={doc.name}><div>{doc.name}</div></Link>
+                        <Link to={`/doc/${doc.name.replace('.md', '')}`} key={doc.name.replace('.md', '')}><div>{doc.name.replace('.md', '')}</div></Link>
                     ))}
                 </div>
                 )}
