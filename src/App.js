@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Routes, Route, Link, useParams, Navigate } from "react-router-dom";
 import MarkdownIt from "markdown-it";
 import markdownItFootnote from "markdown-it-footnote";
@@ -48,6 +48,7 @@ export default function App() {
     const [doclist, setDoclist] = useState([]);
     const [target, setTarget] = useState('');
     const [visibility, setVisibility] = useState(true);
+    const searchWrapper = useRef();
     
     useEffect(() => {
         async function getDoclist(){
@@ -63,26 +64,37 @@ export default function App() {
         getDoclist();
     }, []);
     
+    useEffect(() => {
+        function clickOutside(e){
+            if(searchWrapper.current && !searchWrapper.current.contains(e.target)){
+                setVisibility(false);
+            }
+        }
+        
+        document.addEventListener('mousedown', clickOutside);
+        return () => document.removeEventListener('mousedown', clickOutside);
+    }, []);
+    
     return (
         <>
-            <nav>
-                <Link to="/" id="logo"><img src="/data/imgs/logo.png"/></Link>
-                <input spellCheck="false" id="search" onClick={e => e.stopPropagation()} onFocus={() => setVisibility(true)} onChange={e => setTarget(e.target.value)} />
-            </nav>
-            {visibility && (
-            <div id="searchlist">
-                {doclist.filter(doc => doc.name.startsWith(target)).sort((a, b) => a.name.length - b.name.length).slice(0, 5).map(doc => (
-                    <Link to={`/doc/${doc.path}`} key={doc.name}><div>{doc.name}</div></Link>
-                ))}
+            <div ref={searchWrapper}>
+                <nav>
+                    <Link to="/" id="logo"><img src="/data/imgs/logo.png"/></Link>
+                    <input spellCheck="false" id="search" onFocus={() => setVisibility(true)} onChange={e => setTarget(e.target.value)} />
+                </nav>
+                {visibility && (
+                <div id="searchlist">
+                    {doclist.filter(doc => doc.name.startsWith(target)).sort((a, b) => a.name.length - b.name.length).slice(0, 5).map(doc => (
+                        <Link to={`/doc/${doc.path}`} key={doc.name}><div>{doc.name}</div></Link>
+                    ))}
+                </div>
+                )}
             </div>
-            )}
-            <div onClick={() => setVisibility(false)}>
-                <Routes>
-                    <Route path="/" element={<Navigate to="/doc/대문" replace />} />
-                    <Route path="/doc/:id" element={<Doc />} />
-                    <Route path="*" element={<Notfound />} />
-                </Routes>
-            </div>
+            <Routes>
+                <Route path="/" element={<Navigate to="/doc/대문" replace />} />
+                <Route path="/doc/:id" element={<Doc />} />
+                <Route path="*" element={<Notfound />} />
+            </Routes>
         </>
     );
 }
