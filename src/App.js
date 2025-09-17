@@ -75,7 +75,7 @@ export default function App() {
         <>
             <nav>
                 <Link to="/" id="logo"><img src="/data/imgs/logo.png"/></Link>
-                <input spellCheck="false" id="search" onFocus={() => setVisibility(true)} onChange={e => setTarget(e.target.value)} ref={search} />
+                <input spellCheck="false" placeholder="검색어를 입력..." id="search" onFocus={() => setVisibility(true)} onChange={e => setTarget(e.target.value)} ref={search} />
             </nav>
             {visibility && (
             <div id="searchlist">
