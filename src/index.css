@@ -24,6 +24,7 @@ body{
 }
 
 nav{
+  z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
@@ -63,14 +64,15 @@ nav{
   top: 40px;
   right: 0;
   width: 160px;
-  padding: 0 20px;
+  padding: 10px 20px;
+  border: 1px solid #DADEE6;
   background-color: #FFFFFF;
 }
 
 #content{
   box-sizing: border-box;
   width: max(360px, 80%);
-  margin: 60px auto 0;
+  margin: 40px auto 0;
   padding: 20px;
 }
 
