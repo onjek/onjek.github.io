@@ -37,10 +37,10 @@ function Doc(){
     }, [id]);
     
     return (
-        <>
+        <div id="content">
             <h1>{id}</h1>
-            <div dangerouslySetInnerHTML={{ __html: content }} id="content"></div>
-        </>
+            <div dangerouslySetInnerHTML={{ __html: content }} ></div>
+        </div>
     );
 }
 
