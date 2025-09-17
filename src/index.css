@@ -68,8 +68,9 @@ nav{
 }
 
 #content{
+  box-sizing: border-box;
   width: max(360px, 80%);
-  margin: 40px auto 0;
+  margin: 60px auto 0;
   padding: 20px;
 }
 
