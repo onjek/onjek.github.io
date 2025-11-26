@@ -7,7 +7,49 @@ import markdownItContainer from "markdown-it-container";
 
 const md = new MarkdownIt({ html: true })
     .use(markdownItFootnote)
-    .use(markdownItMultimdTable, { headerless: true, rowspan: true });
+    .use(markdownItMultimdTable, { headerless: true, rowspan: true })
+    .use(markdownitTh);
+
+let depth = 0;
+
+md.renderer.rules.table_open = function(tokens, idx){
+    depth++;
+    
+    if(depth === 1){
+		return '<div class="table-container">\n<table>\n';
+	}
+    else{
+		return '<table>\n';
+	}
+};
+
+md.renderer.rules.table_close = function(tokens, idx){
+    depth--;
+    
+    if(depth === 0){
+		return '</table>\n</div>\n';
+	}
+    else{
+		return '</table>\n';
+	}
+};
+
+function markdownitTh(md){
+    md.core.ruler.after('block', 'th', function(state){
+    const tokens = state.tokens;
+    
+    for(let i = 0; i < tokens.length; i++){
+        const token = tokens[i];
+        if(token.type === 'inline' && tokens[i - 1]?.type === 'td_open'){
+            if(token.content.startsWith('#')){
+                tokens[i - 1].tag = 'th';
+                tokens[i + 1].tag = 'th';
+                token.content = token.content.replace(/^#\s*/, '');
+            }
+        }
+    }
+    });
+}
 
 function Notfound(){
     return (
