@@ -88,6 +88,12 @@ a{
   text-decoration: none;
 }
 
+.table-container{
+  padding-right: 8px;
+  width: max(320px, 100%);
+  overflow-x: auto;
+}
+
 table{
   width: max-content;
   border-collapse: collapse;
