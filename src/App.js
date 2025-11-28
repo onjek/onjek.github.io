@@ -70,7 +70,10 @@ function Doc(){
                 const res = await fetch(`/api/getDoc?id=${encodeURIComponent(id)}`);
                 if(!res.ok) throw new Error('문서 불러오기 실패');
                 const text = await res.text();
-                setContent(md.render(text));
+                const processed_text = text.replace(/(?<=[^\!])\[\[([^\[\]]+)\]\]/g, `<a href="./$1">$1</a>`)
+                .replace(/\!\[\[([^\[\]]+)\]\]/g, `<img src="https://onjek.github.io/data/imgs/$1">`);
+                
+                setContent(md.render(processed_text));
             } catch(err) {
                 setContent(`<p>오류: ${err.message}</p>`);
             }
