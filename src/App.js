@@ -70,7 +70,8 @@ function Doc(){
                 const res = await fetch(`/api/getDoc?id=${encodeURIComponent(id)}`);
                 if(!res.ok) throw new Error('문서 불러오기 실패');
                 const text = await res.text();
-                const processed_text = text.replace(/(?<=[^\!])\[\[([^\[\]]+)\]\]/g, `<a href="./$1">$1</a>`)
+                const processed_text = text.replace(/(?<=[^\!])\[\[([^\[\]]+)\]\]\(([^\[\]\(\)]+)\)/g, `<a href="./$2">$1</a>`)
+                .replace(/(?<=[^\!])\[\[([^\[\]]+)\]\]/g, `<a href="./$1">$1</a>`)
                 .replace(/\!\[\[([^\[\]]+)\]\]/g, `<img src="https://onjek.github.io/data/imgs/$1">`);
                 
                 setContent(md.render(processed_text));
