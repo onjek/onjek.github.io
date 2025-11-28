@@ -90,7 +90,7 @@ a{
 
 .table-container{
   padding-right: 8px;
-  width: max(320px, 100%);
+  width: 100%;
   overflow-x: auto;
 }
 
@@ -107,4 +107,10 @@ th, td{
 
 th{
   background-color: #F7F9FC;
+}
+
+@media (max-width: 768px){
+  th, td{
+    max-width: 120px;
+  }
 }
