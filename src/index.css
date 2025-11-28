@@ -84,7 +84,7 @@ nav{
 }
 
 a{
-  color: #337EFF;
+  color: #0096FA;
   text-decoration: none;
 }
 
@@ -111,6 +111,6 @@ th{
 
 @media (max-width: 768px){
   th, td{
-    max-width: 120px;
+    max-width: 160px;
   }
 }
