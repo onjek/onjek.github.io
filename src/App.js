@@ -8,8 +8,8 @@ import markdownItContainer from "markdown-it-container";
 const md = new MarkdownIt({ html: true })
     .use(markdownItFootnote)
     .use(markdownItMultimdTable, { headerless: true, rowspan: true })
-    .use(markdownitTh)
-    .use(markdownitContainer, 'info', {
+    .use(markdownItTh)
+    .use(markdownItContainer, 'info', {
         render: function(tokens, idx){
             const token = tokens[idx];
             if(token.nesting === 1){
@@ -45,7 +45,7 @@ md.renderer.rules.table_close = function(tokens, idx){
 	}
 };
 
-function markdownitTh(md){
+function markdownItTh(md){
     md.core.ruler.after('block', 'th', function(state){
     const tokens = state.tokens;
     
