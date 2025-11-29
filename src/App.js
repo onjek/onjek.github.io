@@ -9,7 +9,7 @@ const md = new MarkdownIt({ html: true })
     .use(markdownItFootnote)
     .use(markdownItMultimdTable, { headerless: true, rowspan: true })
     .use(markdownitTh)
-    .use(window.markdownitContainer, 'info', {
+    .use(markdownitContainer, 'info', {
         render: function(tokens, idx){
             const token = tokens[idx];
             if(token.nesting === 1){
