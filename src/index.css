@@ -110,8 +110,9 @@ th{
 }
 
 .info{
-  padding: 6px 12px;
+  padding: 8px 16px;
   border: 1px solid #DADEE6;
+  width: max-content;
   font-size: 14px;
 }
 
