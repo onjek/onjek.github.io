@@ -116,6 +116,10 @@ th{
   font-size: 14px;
 }
 
+.info p{
+  margin: 0;
+}
+
 @media (max-width: 768px){
   th, td{
     max-width: 160px;
