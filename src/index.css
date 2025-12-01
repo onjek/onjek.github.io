@@ -109,6 +109,12 @@ th{
   background-color: #F7F9FC;
 }
 
+.info{
+  padding: 6px 12px;
+  border: 1px solid #DADEE6;
+  font-size: 14px;
+}
+
 @media (max-width: 768px){
   th, td{
     max-width: 160px;
