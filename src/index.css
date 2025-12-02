@@ -94,6 +94,10 @@ a{
   overflow-x: auto;
 }
 
+.table-container+.table-container{
+  margin-top: 24px;
+}
+
 table{
   width: max-content;
   border-collapse: collapse;
