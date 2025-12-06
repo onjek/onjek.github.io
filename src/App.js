@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet";
 import { Routes, Route, Link, useParams, Navigate } from "react-router-dom";
 import MarkdownIt from "markdown-it";
 import markdownItFootnote from "markdown-it-footnote";
@@ -130,6 +131,10 @@ export default function App() {
     
     return (
         <>
+            <Helmet>
+                <meta name="format-detection" content="telephone=no" />
+            </Helmet>
+            
             <nav>
                 <Link to="/" id="logo"><img src="https://onjek.github.io/data/imgs/logo.svg"/></Link>
                 <input spellCheck="false" placeholder="검색어를 입력..." id="search" onFocus={() => setVisibility(true)} onChange={e => setTarget(e.target.value)} ref={search} />
