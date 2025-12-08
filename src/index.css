@@ -95,6 +95,10 @@ blockquote{
   color: #5C5F66;
 }
 
+blockquote p{
+  margin: 0;
+}
+
 .table-container{
   padding-right: 8px;
   width: 100%;
