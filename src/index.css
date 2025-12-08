@@ -88,6 +88,13 @@ a{
   text-decoration: none;
 }
 
+blockquote{
+  margin-left: 0;
+  padding: 6px 16px;
+  border-left: 4px solid #DADEE6;
+  color: #5C5F66;
+}
+
 .table-container{
   padding-right: 8px;
   width: 100%;
