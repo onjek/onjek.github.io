@@ -90,7 +90,7 @@ a{
 
 blockquote{
   margin-left: 0;
-  padding: 6px 16px;
+  padding: 6px 0 6px 16px;
   border-left: 4px solid #DADEE6;
   color: #5C5F66;
 }
@@ -137,6 +137,11 @@ th{
 
 .info p{
   margin: 0;
+}
+
+.footnotes-sep{
+  margin: 64px 0 32px;
+  border: 1px solid #DADEE6;
 }
 
 @media (max-width: 768px){
