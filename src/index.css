@@ -133,23 +133,19 @@ th{
   background-color: #F7F9FC;
 }
 
-table tr:first-child th,
-table tr:first-child td{
+table>*:first-child>tr:first-child>*{
   border-top: none;
 }
 
-table tr:last-child th,
-table tr:last-child td{
+table>*:last-child>tr:last-child>*{
   border-bottom: none;
 }
 
-table tr th:first-child,
-table tr td:first-child{
+table tr>*:first-child{
   border-left: none;
 }
 
-table tr th:last-child,
-table tr td:last-child{
+table tr>*:last-child{
   border-right: none;
 }
 
