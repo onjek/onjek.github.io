@@ -28,7 +28,7 @@ md.renderer.rules.table_open = function(tokens, idx){
     depth++;
     
     if(depth === 1){
-		return '<div class="table-container"><div class="table-container">\n<table>\n';
+		return '<div class="table-container"><div class="table-border">\n<table>\n';
 	}
     else{
 		return '<table>\n';
