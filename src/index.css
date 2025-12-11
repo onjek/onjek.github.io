@@ -71,7 +71,8 @@ nav{
   top: 40px;
   right: 0;
   padding: 10px 20px;
-  width: 160px;
+  min-width: 160px;
+  width: max-content;
   border: 1px solid #DADEE6;
   background-color: #FFFFFF;
 }
@@ -90,9 +91,9 @@ a{
 
 blockquote{
   margin: 24px 0;
-  padding: 10px 20px;
+  padding: 12px 24px;
   width: max-content;
-  border-radius: 5px;
+  border-radius: 6px;
   border: 1px solid #DADEE6;
   color: #5C5F66;
 }
@@ -106,6 +107,12 @@ blockquote p{
   padding-right: 8px;
   width: 100%;
   overflow-x: auto;
+}
+
+.table-border{
+  width: max-content;
+  border-radius: 6px;
+  border: 1px solid #DADEE6;
 }
 
 table{
