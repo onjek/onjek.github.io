@@ -81,7 +81,7 @@ nav{
   box-sizing: border-box;
   margin: 40px auto 0;
   padding: 20px;
-  width: max(360px, 80%);
+  width: 80%;
 }
 
 a{
@@ -168,6 +168,10 @@ table tr>*:last-child{
 }
 
 @media (max-width: 768px){
+  #content{
+    width: 100%;
+  }
+
   th, td{
     max-width: 160px;
   }
