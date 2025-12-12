@@ -169,7 +169,7 @@ table tr>*:last-child{
 
 @media (max-width: 768px){
   #content{
-    width: 100%;
+    width: calc(100% - 20px);
   }
 
   th, td{
