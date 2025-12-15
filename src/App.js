@@ -13,7 +13,7 @@ const md = new MarkdownIt({ html: true })
     .use(markdownItMultimdTable, { headerless: true, rowspan: true })
     .use(markdownItTh)
     .use(markdownItAnchor)
-    .use(markdownItTOC)
+    .use(markdownItTOC, { markerPattern: /^\<\<toc\>\>/im })
     .use(markdownItContainer, 'info', {
         render: function(tokens, idx){
             const token = tokens[idx];
