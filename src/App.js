@@ -7,13 +7,15 @@ import markdownItMultimdTable from "markdown-it-multimd-table";
 import markdownItContainer from "markdown-it-container";
 import markdownItAnchor from "markdown-it-anchor";
 import markdownItTOC from "markdown-it-table-of-contents";
+import { tab as markdownItTab } from "@mdit/plugin-tab";
 
 const md = new MarkdownIt({ html: true })
     .use(markdownItFootnote)
     .use(markdownItMultimdTable, { headerless: true, rowspan: true })
     .use(markdownItTh)
     .use(markdownItAnchor)
-    .use(markdownItTOC, { markerPattern: /^\<\<toc\>\>/im })
+    .use(markdownItTOC, { markerPattern: /^:::\s?toc\s?:::/im })
+    .use(markdownItTab)
     .use(markdownItContainer, 'info', {
         render: function(tokens, idx){
             const token = tokens[idx];
