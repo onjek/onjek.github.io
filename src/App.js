@@ -14,7 +14,6 @@ const md = new MarkdownIt({ html: true })
     .use(markdownItTh)
     .use(markdownItAnchor)
     .use(markdownItTOC, { markerPattern: /^:::\s?toc\s?:::/im })
-    .use(markdownItTab)
     .use(markdownItContainer, 'info', {
         render: function(tokens, idx){
             const token = tokens[idx];
