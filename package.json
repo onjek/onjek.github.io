@@ -2,9 +2,6 @@
     "name": "onjek",
     "version": "1.0.0",
     "private": true,
-    "engines": {
-        "node": ">=18"
-    },
     "dependencies": {
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -17,7 +14,6 @@
         "markdown-it-container": "^3.0.0",
         "markdown-it-anchor": "^9.2.0",
         "markdown-it-table-of-contents": "^1.1.0",
-        "@mdit/plugin-tab": "^0.23.0",
         "node-fetch": "^2.6.1"
     },
     "scripts": {
