@@ -7,7 +7,6 @@ import markdownItMultimdTable from "markdown-it-multimd-table";
 import markdownItContainer from "markdown-it-container";
 import markdownItAnchor from "markdown-it-anchor";
 import markdownItTOC from "markdown-it-table-of-contents";
-import { tab as markdownItTab } from "@mdit/plugin-tab";
 
 const md = new MarkdownIt({ html: true })
     .use(markdownItFootnote)
