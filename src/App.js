@@ -6,14 +6,14 @@ import markdownItFootnote from "markdown-it-footnote";
 import markdownItMultimdTable from "markdown-it-multimd-table";
 import markdownItContainer from "markdown-it-container";
 import markdownItAnchor from "markdown-it-anchor";
-import markdownItTOC from "markdown-it-table-of-contents";
+import markdownItTOC from "markdown-it-toc-done-right";
 
 const md = new MarkdownIt({ html: true })
     .use(markdownItFootnote)
     .use(markdownItMultimdTable, { headerless: true, rowspan: true })
     .use(markdownItTh)
     .use(markdownItAnchor)
-    .use(markdownItTOC, { markerPattern: /^\s*\(\(\s?toc\s?\)\)\s*$/im })
+    .use(markdownItTOC, { placeholder: '((toc))' })
     .use(markdownItContainer, 'info', {
         render: function(tokens, idx){
             const token = tokens[idx];
