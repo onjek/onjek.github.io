@@ -13,11 +13,11 @@ const md = new MarkdownIt({ html: true })
     .use(markdownItFootnote)
     .use(markdownItMultimdTable, { headerless: true, rowspan: true })
     .use(markdownItTh)
-    .use(markdownItAnchor, {
+	.use(markdownItTOC, {
+		placeholder: '((toc))',
 		slugify: s => uslug(s)
 	})
-    .use(markdownItTOC, {
-		placeholder: '((toc))',
+    .use(markdownItAnchor, {
 		slugify: s => uslug(s)
 	})
     .use(markdownItContainer, 'info', {
