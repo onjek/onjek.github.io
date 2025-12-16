@@ -7,13 +7,19 @@ import markdownItMultimdTable from "markdown-it-multimd-table";
 import markdownItContainer from "markdown-it-container";
 import markdownItAnchor from "markdown-it-anchor";
 import markdownItTOC from "markdown-it-toc-done-right";
+import uslug from "uslug";
 
 const md = new MarkdownIt({ html: true })
     .use(markdownItFootnote)
     .use(markdownItMultimdTable, { headerless: true, rowspan: true })
     .use(markdownItTh)
-    .use(markdownItAnchor)
-    .use(markdownItTOC, { placeholder: '(\(\(toc\)\))' })
+    .use(markdownItAnchor, {
+		slugify: s => uslug(s)
+	})
+    .use(markdownItTOC, {
+		placeholder: '((toc))',
+		slugify: s => uslug(s)
+	})
     .use(markdownItContainer, 'info', {
         render: function(tokens, idx){
             const token = tokens[idx];
