@@ -6,17 +6,19 @@ import markdownItFootnote from "markdown-it-footnote";
 import markdownItMultimdTable from "markdown-it-multimd-table";
 import markdownItContainer from "markdown-it-container";
 import markdownItAnchor from "markdown-it-anchor";
-import markdownItTOC from "markdown-it-toc-done-right";
+import markdownItTOC from "markdown-it-table-of-contents";
 import uslug from "uslug";
 
 const md = new MarkdownIt({ html: true })
     .use(markdownItFootnote)
     .use(markdownItMultimdTable, { headerless: true, rowspan: true })
     .use(markdownItTh)
-				.use(markdownItTOC, {
+				.use(markdownItAnchor, {
 					slugify: s => uslug(s)
 				})
-				.use(markdownItAnchor, {
+				.use(markdownItTOC, {
+					containerClass: "toc",
+					markerPattern: /^:::\s?toc\s?:::/im,
 					slugify: s => uslug(s)
 				})
     .use(markdownItContainer, 'info', {
