@@ -13,7 +13,7 @@
         "markdown-it-multimd-table": "^4.1.2",
         "markdown-it-container": "^3.0.0",
         "markdown-it-anchor": "^9.2.0",
-        "markdown-it-table-of-contents": "^1.1.0",
+        "markdown-it-table-of-contents": "github:jedenzero/markdown-it-table-of-contents#master",
         "uslug": "^1.0.3",
         "node-fetch": "^2.6.1"
     },
