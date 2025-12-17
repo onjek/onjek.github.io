@@ -13,13 +13,12 @@ const md = new MarkdownIt({ html: true })
     .use(markdownItFootnote)
     .use(markdownItMultimdTable, { headerless: true, rowspan: true })
     .use(markdownItTh)
-	.use(markdownItTOC, {
-		placeholder: '((toc))',
-		slugify: s => uslug(s)
-	})
-    .use(markdownItAnchor, {
-		slugify: s => uslug(s)
-	})
+				.use(markdownItTOC, {
+					slugify: s => uslug(s)
+				})
+				.use(markdownItAnchor, {
+					slugify: s => uslug(s)
+				})
     .use(markdownItContainer, 'info', {
         render: function(tokens, idx){
             const token = tokens[idx];
