@@ -17,6 +17,7 @@ const md = new MarkdownIt({ html: true })
 					slugify: s => uslug(s)
 				})
 				.use(markdownItTOC, {
+					includeLevel: [2, 3, 4],
 					containerClass: "toc",
 					markerPattern: /^:::\s?toc\s?:::/im,
 					slugify: s => uslug(s)
