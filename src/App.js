@@ -6,7 +6,7 @@ import markdownItFootnote from "markdown-it-footnote";
 import markdownItMultimdTable from "markdown-it-multimd-table";
 import markdownItContainer from "markdown-it-container";
 import markdownItAnchor from "markdown-it-anchor";
-import markdownItTOC from "markdown-it-table-of-contents/index.js";
+import markdownItTOC from "markdown-it-table-of-contents";
 import uslug from "uslug";
 
 const md = new MarkdownIt({ html: true })
