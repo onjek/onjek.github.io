@@ -18,7 +18,6 @@ const md = new MarkdownIt({ html: true })
 				})
 				.use(markdownItTOC, {
 					includeLevel: [2, 3, 4],
-					containerClass: "toc",
 					markerPattern: /^:::\s?toc\s?:::/im,
 					transformContainerOpen: () => {
 						return '<div class="toc"><details><summary>목차</summary>';
