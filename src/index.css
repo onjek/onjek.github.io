@@ -127,6 +127,7 @@ ul{
 
 .toc details summary::-webkit-details-marker{
   display: none;
+  list-style: none;
 }
 
 .toc details summary{
