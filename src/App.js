@@ -20,7 +20,12 @@ const md = new MarkdownIt({ html: true })
 					includeLevel: [2, 3, 4],
 					containerClass: "toc",
 					markerPattern: /^:::\s?toc\s?:::/im,
-					slugify: s => uslug(s)
+					transformContainerOpen: () => {
+						return '<div class="toc"><details><summary>목차</summary>';
+					},
+					transformContainerClose: () => {
+						return '</details></div>';
+					}
 				})
     .use(markdownItContainer, 'info', {
         render: function(tokens, idx){
