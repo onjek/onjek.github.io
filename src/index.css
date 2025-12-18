@@ -129,12 +129,12 @@ ul{
   display: none;
 }
 
-.toc-title{
+.toc details summary{
   font-size: 18px;
   color: #5C5F66;
 }
 
-details[open] .toc-title{
+.toc details[open] summary{
   margin-bottom: 8px;
   color: inherit;
 }
