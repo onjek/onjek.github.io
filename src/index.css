@@ -84,6 +84,10 @@ nav{
   width: 80%;
 }
 
+h2, h3, h4{
+  scroll-margin-top: 60px;
+}
+
 a{
   color: #1896D2;
   text-decoration: none;
@@ -104,15 +108,35 @@ blockquote p{
 
 ul{
   margin: 0;
-  padding-left: 16px;
+  padding-left: 32px;
 }
 
 .toc{
+  user-select: none;
   margin: 24px 0;
   padding: 12px 24px;
   width: max-content;
+  min-width: 180px;
   border-radius: 6px;
   border: 1px solid #DADEE6;
+}
+
+.toc details summary::marker{
+  content: '';
+}
+
+.toc details summary::-webkit-details-marker{
+  display: none;
+}
+
+.toc-title{
+  font-size: 18px;
+  color: #5C5F66;
+}
+
+details[open] .toc-title{
+  margin-bottom: 8px;
+  color: inherit;
 }
 
 .table-container{
