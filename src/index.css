@@ -100,6 +100,7 @@ blockquote{
   border-radius: 6px;
   border: 1px solid #DADEE6;
   color: #5C5F66;
+  box-shadow: 0 2px 4px 0 #DADEE680;
 }
 
 blockquote p{
