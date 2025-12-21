@@ -149,7 +149,6 @@ export default function App() {
         <>
             <Helmet>
                 <meta name="format-detection" content="telephone=no" />
-																<meta name="google-site-verification" content="Fb4dZfbsUFfHNH2547L2XC-Rc_80cWN8gcomQge5t7k" />
             </Helmet>
             
             <nav>
