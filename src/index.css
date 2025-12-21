@@ -94,8 +94,10 @@ a{
 }
 
 blockquote{
+  box-sizing: border-box;
   margin: 24px 0;
   padding: 12px 24px;
+  max-width: 100%;
   width: max-content;
   border-radius: 6px;
   border: 1px solid #DADEE6;
@@ -186,8 +188,8 @@ table tr>*:last-child{
   box-sizing: border-box;
   padding: 8px 16px;
   border: 1px solid #DADEE6;
-  width: max-content;
   max-width: max(320px, calc(100% - 40px));
+  width: max-content;
   font-size: 14px;
 }
 
