@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet";
 import { Routes, Route, Link, useParams, Navigate } from "react-router-dom";
 import MarkdownIt from "markdown-it";
-import markdownItRuby from "markdown-it-ruby";
 import markdownItFootnote from "markdown-it-footnote";
 import markdownItMultimdTable from "markdown-it-multimd-table";
 import markdownItContainer from "markdown-it-container";
@@ -11,7 +10,6 @@ import markdownItTOC from "markdown-it-table-of-contents";
 import uslug from "uslug";
 
 const md = new MarkdownIt({ html: true })
-				.use(markdownItRuby)
     .use(markdownItFootnote)
     .use(markdownItMultimdTable, { headerless: true, rowspan: true })
     .use(markdownItTh)
@@ -100,7 +98,8 @@ function Doc(){
                 const res = await fetch(`/api/getDoc?id=${encodeURIComponent(id)}`);
                 if(!res.ok) throw new Error('문서 불러오기 실패');
                 const text = await res.text();
-                const processed_text = text.replace(/(?<=[^\!])\[\[([^\[\]]+)\]\]\(([^\[\]\(\)]+)\)/g, `<a href="./$2">$1</a>`)
+                const processed_text = text.replace(/\[([^\[\]\(\)]+)\]\^\(([^\[\]\(\)]+)\)/g, `<ruby><rb>$1</rb><rt>$2</rt><ruby>`);
+																.replace(/(?<=[^\!])\[\[([^\[\]]+)\]\]\(([^\[\]\(\)]+)\)/g, `<a href="./$2">$1</a>`)
                 .replace(/(?<=[^\!])\[\[([^\[\]]+)\]\]/g, `<a href="./$1">$1</a>`)
                 .replace(/\!\[\[([^\[\]]+)\]\]/g, `<img src="https://onjek.github.io/data/imgs/$1">`);
                 
