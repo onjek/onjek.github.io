@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet";
 import { Routes, Route, Link, useParams, Navigate } from "react-router-dom";
 import MarkdownIt from "markdown-it";
+import markdownItRuby from "markdown-it-ruby";
 import markdownItFootnote from "markdown-it-footnote";
 import markdownItMultimdTable from "markdown-it-multimd-table";
 import markdownItContainer from "markdown-it-container";
@@ -10,6 +11,7 @@ import markdownItTOC from "markdown-it-table-of-contents";
 import uslug from "uslug";
 
 const md = new MarkdownIt({ html: true })
+				.use(markdownItRuby)
     .use(markdownItFootnote)
     .use(markdownItMultimdTable, { headerless: true, rowspan: true })
     .use(markdownItTh)
