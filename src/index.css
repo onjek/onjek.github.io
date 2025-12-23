@@ -161,27 +161,12 @@ th, td{
   padding: 8px 16px;
   min-width: 16px;
   height: 32px;
-  border: 1px solid #DADEE6;
+  box-shadow: -1px 0 0 0 #DADEE6,
+              0 -1px 0 0 #DADEE6;
 }
 
 th{
   background-color: #F7F9FC;
-}
-
-table>*:first-child>tr:first-child>*{
-  border-top: none;
-}
-
-table>*:last-child>tr:last-child>*{
-  border-bottom: none;
-}
-
-table tr>*:first-child{
-  border-left: none;
-}
-
-table tr>*:last-child{
-  border-right: none;
 }
 
 .info{
