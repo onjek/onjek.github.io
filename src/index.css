@@ -1,14 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 @font-face {
-  font-family: 'Free Sans';
+  font-family: 'BC Sans';
   font-weight: 400;
+  font-style: normal;
   font-display: swap;
-  src: url('./assets/fonts/FreeSans.woff') format('woff');
+  src: url('./assets/fonts/BCSansRegular.woff2') format('woff2');
 }
 @font-face {
-  font-family: 'Free Sans';
-  font-weight: 700;
+  font-family: 'BC Sans';
+  font-weight: 400;
+  font-style: italic;
   font-display: swap;
-  src: url('./assets/fonts/FreeSansBold.woff') format('woff');
+  src: url('./assets/fonts/BCSansItalic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'BC Sans';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('./assets/fonts/BCSansBold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'BC Sans';
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  src: url('./assets/fonts/BCSansBoldItalic.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Pretendard';
@@ -30,7 +47,7 @@
 body{
   margin: 0;
   color: #303133;
-  font-family: 'Free Sans', 'Pretendard';
+  font-family: 'Noto Sans', 'BC Sans', 'Pretendard';
   line-height: 1.5;
 }
 
