@@ -1,5 +1,5 @@
-@import url('/assets/fonts/FreeSans.woff');
-@import url('/assets/fonts/FreeSansBold.woff');
+@import url('./assets/fonts/FreeSans.woff');
+@import url('./assets/fonts/FreeSansBold.woff');
 @font-face {
   font-family: 'Pretendard';
   font-weight: 400;
