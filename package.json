@@ -16,6 +16,7 @@
         "markdown-it-table-of-contents": "github:jedenzero/markdown-it-table-of-contents#master",
         "uslug": "^1.0.3",
         "markdown-it-ruby": "^1.1.2",
+        "es-hangul": "^2.3.8",
         "node-fetch": "^2.6.1"
     },
     "scripts": {
