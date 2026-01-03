@@ -8,6 +8,7 @@ import markdownItContainer from "markdown-it-container";
 import markdownItAnchor from "markdown-it-anchor";
 import markdownItTOC from "markdown-it-table-of-contents";
 import uslug from "uslug";
+import { disassemble } from "es-hangul";
 
 const md = new MarkdownIt({ html: true })
     .use(markdownItFootnote)
@@ -158,7 +159,7 @@ export default function App() {
             </nav>
             {visibility && (
             <div id="searchlist">
-                {doclist.filter(doc => doc.name.startsWith(target)).sort((a, b) => a.name.length - b.name.length).slice(0, 5).map(doc => (
+                {doclist.filter(doc => disassemble(doc.name).startsWith(disassemble(target))).sort((a, b) => a.name.length - b.name.length).slice(0, 5).map(doc => (
                     <Link to={`/doc/${doc.name.replace('.md', '')}`} key={doc.name.replace('.md', '')}><div>{doc.name.replace('.md', '')}</div></Link>
                 ))}
             </div>
