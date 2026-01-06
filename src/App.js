@@ -99,12 +99,14 @@ function Doc(){
                 const res = await fetch(`/api/getDoc?id=${encodeURIComponent(id)}`);
                 if(!res.ok) throw new Error('문서 불러오기 실패');
                 const text = await res.text();
-                const processed_text = text.replace(/\[([^\[\]\(\)]+)\]\^\(([^\[\]\(\)]+)\)/g, `<ruby><rb>$1</rb><rt>$2</rt><ruby>`)
+                const processed_text = text.replace(/\[([^\[\]\(\)]+)\]\^\(([^\[\]\(\)]+)\)/g, `<ruby><rb>$1</rb><rt>$2</rt></ruby>`)
 																.replace(/(?<=[^\!])\[\[([^\[\]]+)\]\]\(([^\[\]\(\)]+)\)/g, `<a href="./$2">$1</a>`)
                 .replace(/(?<=[^\!])\[\[([^\[\]]+)\]\]/g, `<a href="./$1">$1</a>`)
                 .replace(/\!\[\[([^\[\]]+)\]\]/g, `<img src="https://onjek.github.io/data/imgs/$1">`);
-                
-                setContent(md.render(processed_text));
+                const rendered_text = md.render(processed_text);
+                const content_text = rendered_text.replace(/(<h2[^>]*?>[^<]*?</h2>)([\s\S]*?)(?=<h2|$)/g, `<details><summary>$1</summary>$2</details>`)
+																.replace(/(<h3[^>]*?>[^<]*?</h3>)([\s\S]*?)(?=<h3|$)/g, `<details><summary>$1</summary>$2</details>`);
+																setContent(content_text);
             } catch(err) {
                 setContent(`<p>오류: ${err.message}</p>`);
             }
