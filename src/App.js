@@ -104,8 +104,8 @@ function Doc(){
                 .replace(/(?<=[^\!])\[\[([^\[\]]+)\]\]/g, `<a href="./$1">$1</a>`)
                 .replace(/\!\[\[([^\[\]]+)\]\]/g, `<img src="https://onjek.github.io/data/imgs/$1">`);
                 const rendered_text = md.render(processed_text);
-                const content_text = rendered_text.replace(/(<h2[^>]*?>[^<]*?<\/h2>)([\s\S]*?)(?=<h2|$)/g, `<details open><summary>$1</summary>$2</details>`)
-																.replace(/(<h3[^>]*?>[^<]*?<\/h3>)([\s\S]*?)(?=<h2|<h3|$)/g, `<details open><summary>$1</summary>$2</details>`);
+                const content_text = rendered_text.replace(/(<h2[^>]*?>[^<]+?<\/h2>)([\s\S]*?)(?=<h2|$)/g, `<details open><summary>$1</summary>$2</details>`)
+																.replace(/(<h3[^>]*?>[^<]+?<\/h3>)([\s\S]*?)(?=<h2|<h3|$)/g, `<details open><summary>$1</summary>$2</details>`);
 																setContent(content_text);
             } catch(err) {
                 setContent(`<p>오류: ${err.message}</p>`);
@@ -115,10 +115,10 @@ function Doc(){
     }, [id]);
     
     return (
-        <div id="content">
-            <h1>{id}</h1>
-            <div dangerouslySetInnerHTML={{ __html: content }} ></div>
-        </div>
+        <main id="content">
+            <header><h1>{id}</h1></header>
+            <article dangerouslySetInnerHTML={{ __html: content }} ></article>
+        </main>
     );
 }
 
