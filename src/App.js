@@ -105,7 +105,7 @@ function Doc(){
                 .replace(/\!\[\[([^\[\]]+)\]\]/g, `<img src="https://onjek.github.io/data/imgs/$1">`);
                 const rendered_text = md.render(processed_text);
                 const content_text = rendered_text.replace(/(<h2[^>]*?>[^<]+?<\/h2>)([\s\S]*?)(?=<h2|$)/g, `<details open><summary>$1</summary>$2</details>`)
-																.replace(/(<h3[^>]*?>[^<]+?<\/h3>)([\s\S]*?)(?=<h2|<h3|$)/g, `<details open><summary>$1</summary>$2</details>`);
+																.replace(/(<h3[^>]*?>[^<]+?<\/h3>)([\s\S]*?)(?=<details open><summary><h2|<h3|$)/g, `<details open><summary>$1</summary>$2</details>`);
 																setContent(content_text);
             } catch(err) {
                 setContent(`<p>오류: ${err.message}</p>`);
