@@ -44,6 +44,10 @@
   display: none;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body{
   margin: 0;
   color: #303133;
@@ -152,10 +156,6 @@ ul{
   border: 1px solid #DADEE6;
 }
 
-.toc details summary::marker{
-  font-size: 0;
-}
-
 .toc details summary{
   font-size: 18px;
   color: #5C5F66;
@@ -163,6 +163,30 @@ ul{
 
 .toc details[open] summary{
   margin-bottom: 8px;
+  color: inherit;
+}
+
+.toc details summary::marker{
+  font-size: 0;
+}
+
+details:has(h2, h3){
+  margin: 24px 0;
+}
+
+summary:has(h2, h3){
+  list-style-type: none;
+}
+
+summary:has(h2, h3)::marker{
+  font-size: 0;
+}
+
+summary h2, summary h3{
+  color: #5C5F66;
+}
+
+details[open] h2, details[open] h3{
   color: inherit;
 }
 
