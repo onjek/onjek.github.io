@@ -183,6 +183,7 @@ summary:has(h2, h3)::marker{
 }
 
 summary h2, summary h3{
+  margin: 0;
   color: #5C5F66;
 }
 
