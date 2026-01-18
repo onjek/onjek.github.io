@@ -231,6 +231,7 @@ th{
 
 .info{
   box-sizing: border-box;
+  margin: 12px 0;
   padding: 8px 16px;
   border: 1px solid #DADEE6;
   max-width: max(320px, calc(100% - 40px));
