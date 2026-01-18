@@ -1,42 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Math:wght@400&display=swap');
 @font-face {
-  font-family: 'BC Sans';
-  font-weight: 400;
+  font-family: 'Fira Sans';
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
-  src: url('./assets/fonts/BCSansRegular.woff2') format('woff2');
+  src: url('./assets/fonts/FiraSansRegular.woff2') format('woff2');
 }
 @font-face {
-  font-family: 'BC Sans';
-  font-weight: 400;
+  font-family: 'Fira Sans';
+  font-weight: normal;
   font-style: italic;
   font-display: swap;
-  src: url('./assets/fonts/BCSansItalic.woff2') format('woff2');
+  src: url('./assets/fonts/FiraSansItalic.woff2') format('woff2');
 }
 @font-face {
-  font-family: 'BC Sans';
-  font-weight: 700;
+  font-family: 'Fira Sans';
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
-  src: url('./assets/fonts/BCSansBold.woff2') format('woff2');
+  src: url('./assets/fonts/FiraSansMedium.woff2') format('woff2');
 }
 @font-face {
-  font-family: 'BC Sans';
-  font-weight: 700;
+  font-family: 'Fira Sans';
+  font-weight: bold;
   font-style: italic;
   font-display: swap;
-  src: url('./assets/fonts/BCSansBoldItalic.woff2') format('woff2');
+  src: url('./assets/fonts/FiraSansMediumItalic.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Pretendard';
-  font-weight: 400;
+  font-weight: normal;
   font-display: swap;
   src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Regular.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Pretendard';
-  font-weight: 600;
+  font-weight: bold;
   font-display: swap;
   src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-SemiBold.woff2') format('woff2');
 }
@@ -52,7 +57,8 @@ html{
 body{
   margin: 0;
   color: #303133;
-  font-family: 'Noto Sans', 'BC Sans', 'Noto Sans Math', 'Pretendard';
+  font-family: 'Noto Sans', 'Fira Sans', 'Pretendard',
+  'Noto Sans KR', 'Noto Sans TC', 'Noto Sans JP', 'Noto Sans SC', 'Noto Sans HK', 'Noto Sans Math';
   line-height: 1.5;
 }
 
