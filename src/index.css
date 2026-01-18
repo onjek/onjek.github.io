@@ -10,28 +10,28 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-  src: url('./assets/fonts/FiraSansRegular.woff2') format('woff2');
+  src: url('./assets/fonts/FiraSansRegular.ttf') format('ttf');
 }
 @font-face {
   font-family: 'Fira Sans';
   font-weight: normal;
   font-style: italic;
   font-display: swap;
-  src: url('./assets/fonts/FiraSansItalic.woff2') format('woff2');
+  src: url('./assets/fonts/FiraSansItalic.ttf') format('ttf');
 }
 @font-face {
   font-family: 'Fira Sans';
   font-weight: bold;
   font-style: normal;
   font-display: swap;
-  src: url('./assets/fonts/FiraSansMedium.woff2') format('woff2');
+  src: url('./assets/fonts/FiraSansMedium.ttf') format('ttf');
 }
 @font-face {
   font-family: 'Fira Sans';
   font-weight: bold;
   font-style: italic;
   font-display: swap;
-  src: url('./assets/fonts/FiraSansMediumItalic.woff2') format('woff2');
+  src: url('./assets/fonts/FiraSansMediumItalic.ttf') format('ttf');
 }
 @font-face {
   font-family: 'Pretendard';
