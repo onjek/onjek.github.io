@@ -178,7 +178,7 @@ ul{
 }
 
 details:has(h2, h3){
-  margin: 24px 0;
+  margin: 12px 0;
 }
 
 summary:has(h2, h3){
