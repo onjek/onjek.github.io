@@ -221,8 +221,7 @@ th, td{
   padding: 8px 16px;
   min-width: 16px;
   height: 32px;
-  box-shadow: -1px 0 0 0 #DADEE6,
-              0 -1px 0 0 #DADEE6;
+  outline: 0.5px solid #DADEE6;
 }
 
 th{
