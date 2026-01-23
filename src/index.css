@@ -63,7 +63,7 @@ body{
 }
 
 nav{
-  z-index: 1;
+  z-index: 2;
   position: fixed;
   top: 0;
   left: 0;
@@ -240,6 +240,59 @@ th{
 
 .info p{
   margin: 0;
+}
+
+.tab{
+  display: flex;
+  flex-wrap: wrap;
+  width: max-content;
+  margin: 12px 0;
+  border-radius: 4px;
+  border: 1px solid #dadee6;
+  background-color: #f7f9fc;
+  overflow: clip;
+}
+
+.tab>div{
+  display: contents;
+}
+
+.tab-input{
+  display: none;
+}
+
+.tab-label{
+  z-index:1;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  padding: 0 8px;
+}
+
+.tab-input:checked+.tab-label{
+  border: none;
+  background-color: #fff;
+  box-shadow: 1px 0 0 0 #dadee6,
+    -1px 0 0 0 #dadee6,
+    0 1px 0 0 #fff;
+}
+
+.tab-content{
+  display: none;
+  width: 0;
+}
+
+.tab-input:checked~.tab-content{
+  order: 1;
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  display: block;
+  padding: 8px 16px;
+  border-top: 1px solid #dadee6;
+  background-color: #fff;
+  word-break: break-all;
 }
 
 .footnotes-sep{
