@@ -68,7 +68,7 @@ const md = new MarkdownIt({ html: true })
             const token = tokens[idx];
             if(token.nesting === 1){
                 env.tabButtonIdx += 1;
-                return `<input type="radio" name="tab-${env.tabIdx}" class="tab-input" id="tab-input-${env.tabIdx}-${env.tabButtonIdx}${env.tabButtonIdx == 1 ? ' checked' : ''}">
+                return `<input type="radio" name="tab-${env.tabIdx}" class="tab-input" id="tab-input-${env.tabIdx}-${env.tabButtonIdx}"${env.tabButtonIdx == 1 ? ' checked' : ''}>
                         <label class="tab-label" for="tab-input-${env.tabIdx}-${env.tabButtonIdx}">`;
             }
             else{
