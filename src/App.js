@@ -37,6 +37,55 @@ const md = new MarkdownIt({ html: true })
                 return '</div>\n';
             }
         }
+    })
+				.use(markdownItContainer, 'tab', {
+        render: function(tokens, idx, options, env){
+            const token = tokens[idx];
+            if(token.nesting === 1){
+                env.tabIdx = env.tabIdx ?? 0;
+                env.tabIdx += 1;
+                env.tabButtonIdx = 0;
+                return '<div class="tab">\n';
+            }
+            else{
+                return '</div>\n';
+            }
+        }
+    })
+				.use(markdownItContainer, 'tab-group', {
+        render: function(tokens, idx, options, env){
+            const token = tokens[idx];
+            if(token.nesting === 1){
+                return '<div class="tab-group">\n';
+            }
+            else{
+                return '</div>\n';
+            }
+        }
+    })
+				.use(markdownItContainer, 'tab-button', {
+        render: function(tokens, idx, options, env){
+            const token = tokens[idx];
+            if(token.nesting === 1){
+                env.tabButtonIdx += 1;
+                return `<input type="radio" name="tab-${env.tabIdx}" class="tab-input" id="tab-input-${env.tabIdx}-${env.tabButtonIdx}${env.tabButtonIdx == 1 ? ' checked' : ''}">
+                        <label class="tab-label" for="tab-input-${env.tabIdx}-${env.tabButtonIdx}">`;
+            }
+            else{
+                return '</label>';
+            }
+        }
+    })
+				.use(markdownItContainer, 'tab-content', {
+        render: function(tokens, idx, options, env){
+            const token = tokens[idx];
+            if(token.nesting === 1){
+							         return '<div class="tab-content">';
+            }
+            else{
+                return '</div>';
+            }
+        }
     });
 
 let depth = 0;
