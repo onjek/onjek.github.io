@@ -245,6 +245,8 @@ th{
 .tab{
   display: flex;
   flex-wrap: wrap;
+  min-width: 202px;
+  max-width: 100%;
   width: max-content;
   margin: 12px 0;
   border-radius: 4px;
@@ -286,6 +288,10 @@ th{
 
 .tab-content p{
   margin: 0;
+}
+
+.tab-content .table-container{
+  margin: 12px 0;
 }
 
 .tab-input:checked~.tab-content{
