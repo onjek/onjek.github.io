@@ -253,7 +253,7 @@ th{
   overflow: clip;
 }
 
-.tab>div{
+.tab-group{
   display: contents;
 }
 
