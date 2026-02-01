@@ -13,7 +13,8 @@ import { disassemble } from "es-hangul";
 const md = new MarkdownIt({ html: true })
     .use(markdownItFootnote)
     .use(markdownItMultimdTable, { headerless: true, rowspan: true })
-    .use(markdownItTh)
+    .use(markdownItUnderline)
+				.use(markdownItTh)
 				.use(markdownItAnchor, {
 					slugify: s => uslug(s)
 				})
@@ -111,6 +112,33 @@ md.renderer.rules.table_close = function(tokens, idx){
 		return '</table>\n';
 	}
 };
+
+function markdownItUnderline(md) {
+	md.inline.ruler.push('underline', (state, silent) => {
+		const src = state.src;
+		let pos = state.pos;
+		
+		if (src[pos] !== '+' || src[pos + 1] !== '+') return false;
+		
+		pos += 2;
+		
+		const start = pos;
+		while (pos < state.posMax){
+			if (src[pos] === '+' && src[pos + 1] === '+'){
+				if (!silent) {
+					const token = state.push('underline', 'span', 0);
+					token.attrs = [['class', 'underlined']];
+					token.content = src.slice(start, pos);
+				}
+				state.pos = pos + 2;
+				return true;
+			}
+			pos++;
+		}
+		return false;
+	});
+	md.renderer.rules.underline = (tokens, i) => `<span class="underlined">${md.utils.escapeHtml(tokens[i].content)}</span>`;
+}
 
 function markdownItTh(md){
     md.core.ruler.after('block', 'th', function(state){
