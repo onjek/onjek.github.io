@@ -132,6 +132,11 @@ a{
   text-decoration: none;
 }
 
+rt{
+  margin-top: 4px;
+  line-height: 0;
+}
+
 blockquote{
   box-sizing: border-box;
   margin: 24px 0;
@@ -148,7 +153,11 @@ blockquote p{
   margin: 0;
 }
 
-ul{
+ul, ol{
+  margin: 24px 0;
+}
+
+ul ul, ol ol, .toc ul{
   margin: 0;
   padding-left: 32px;
 }
