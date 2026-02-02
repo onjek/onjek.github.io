@@ -1,10 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Math:wght@400&display=swap');
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: normal;
+  font-display: swap;
+  src: url('./assets/fonts/NotoSansKRRegular.ttf') format('ttf');
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: bold;
+  font-display: swap;
+  src: url('./assets/fonts/NotoSansKRSemiBold.ttf') format('ttf');
+}
 @font-face {
   font-family: 'Fira Sans';
   font-weight: normal;
