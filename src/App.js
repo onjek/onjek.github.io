@@ -151,30 +151,31 @@ function markdownItRuby(md) {
 }
 
 function markdownItUnderline(md) {
-	md.inline.ruler.push('underline', (state, silent) => {
-		const src = state.src;
-		let pos = state.pos;
+	md.inline.ruler.before('emphasis', 'underline', function (state, silent) {
+		const start = state.pos;
 		
-		if (src[pos] !== '+' || src[pos + 1] !== '+') return false;
+		if (state.src[start] !== '+' || state.src[start + 1] !== '+') return false;
 		
-		pos += 2;
+		let pos = start + 2;
+		const max = state.posMax;
 		
-		const start = pos;
-		while (pos < state.posMax){
-			if (src[pos] === '+' && src[pos + 1] === '+'){
+		while (pos < max) {
+			if (state.src[pos] === '+' && state.src[pos + 1] === '+') {
 				if (!silent) {
-					const token = state.push('underline', 'span', 0);
-					token.attrs = [['class', 'underlined']];
-					token.content = src.slice(start, pos);
+					state.push('underline_open', 'span', 1).attrs = [['class', 'underlined']];
+					state.md.inline.tokenize(state, start + 2, pos);
+					state.push('underline_close', 'span', -1);
 				}
 				state.pos = pos + 2;
+				
 				return true;
 			}
 			pos++;
 		}
 		return false;
 	});
-	md.renderer.rules.underline = (tokens, i) => `<span class="underlined">${md.utils.escapeHtml(tokens[i].content)}</span>`;
+	md.renderer.rules.underline_open = () => `<span class="underlined">`;
+	md.renderer.rules.underline_close = () => `</span>`;
 }
 
 function markdownItTh(md){
