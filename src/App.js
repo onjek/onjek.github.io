@@ -114,79 +114,74 @@ md.renderer.rules.table_close = function(tokens, idx){
 	}
 };
 
-function markdownItRuby(md) {
-	md.inline.ruler.before('link', 'ruby', function (state, silent) {
+function markdownItRuby(md){
+	md.inline.ruler.before('link', 'ruby', function (state, silent){
 		const src = state.src;
-		let pos = state.pos;
+		let start = state.pos;
 		
-		if (src[pos] !== '[') return false;
+		if (src[start] !== '[') return false;
 		
-		const labelStart = pos + 1;
-		let labelEnd = src.indexOf(']', labelStart);
+		const bottomStart = start + 1;
+		let bottomEnd = src.indexOf(']', bottomStart);
 		
-		if (labelEnd === -1) return false;
+		if (bottomEnd === -1) return false;
+		if (src[bottomEnd + 1] !== '^' || src[bottomEnd + 2] !== '(') return false;
 		
-		if (src[labelEnd + 1] !== '^' || src[labelEnd + 2] !== '(') return false;
+		const topStart = bottomEnd + 3;
+		let topEnd = src.indexOf(')', topStart);
 		
-		const rubyStart = labelEnd + 3;
-		let rubyEnd = src.indexOf(')', rubyStart);
-		
-		if (rubyEnd === -1) return false;
-		
+		if (topEnd === -1) return false;
 		if (!silent){
-			const rbText = src.slice(labelStart, labelEnd);
-			const rtText = src.slice(rubyStart, rubyEnd);
+			const bottomText = src.slice(bottomStart, bottomEnd);
+			const topText = src.slice(topStart, topEnd);
 			const token = state.push('ruby', 'ruby', 0);
-			token.meta = { rb: rbText, rt: rtText };
+			token.meta = { rb: bottomText, rt: topText };
 		}
-		state.pos = rubyEnd + 1;
+		state.pos = topEnd + 1;
 		
 		return true;
 	});
-	
 	md.renderer.rules.ruby = function (tokens, idx){
 		const { rb, rt } = tokens[idx].meta;
+		
 		return `<ruby><rb>${md.utils.escapeHtml(rb)}</rb><rt>${md.utils.escapeHtml(rt)}</rt></ruby>`;
 	};
 }
 
 function markdownItUnderline(md){
-  md.inline.ruler.before('emphasis', 'underline', function (state, silent){
-    const start = state.pos;
-
-    if (state.src[start] !== '+' || state.src[start + 1] !== '+') return false;
-
-    let pos = start + 2;
-    const max = state.posMax;
-
-    while (pos < max) {
-      if (state.src[pos] === '+' && state.src[pos + 1] === '+') {
-        if (!silent) {
-          const content = state.src.slice(start + 2, pos);
-
-          const tokenOpen = state.push('underline_open', 'span', 1);
-          tokenOpen.attrs = [['class', 'underlined']];
-
-          state.md.inline.parse(
-            content,
-            state.md,
-            state.env,
-            state.tokens
-          );
-
-          state.push('underline_close', 'span', -1);
-        }
-
-        state.pos = pos + 2;
-        return true;
-      }
-      pos++;
-    }
-    return false;
-  });
-
-  md.renderer.rules.underline_open = () => `<span class="underlined">`;
-  md.renderer.rules.underline_close = () => `</span>`;
+	md.inline.ruler.before('emphasis', 'underline', function (state, silent){
+		const src = state.src;
+		const start = state.pos;
+		
+		if (src[start] !== '+' || src[start + 1] !== '+') return false;
+		
+		const max = state.posMax;
+		let i = start + 2;
+		
+		while (i < max) {
+			if (state.src[i] === '+' && state.src[i + 1] === '+') {
+				if (!silent) {
+					const content = state.src.slice(start + 2, i);
+					const tokenOpen = state.push('underline_open', 'span', 1);
+					tokenOpen.attrs = [['class', 'underlined']];
+					
+					state.md.inline.parse(
+						content,
+						state.md,
+						state.env,
+						state.tokens
+					);
+					state.push('underline_close', 'span', -1);
+				}
+				state.pos = i + 2;
+				return true;
+			}
+			i++;
+		}
+		return false;
+	});
+	md.renderer.rules.underline_open = () => `<span class="underlined">`;
+	md.renderer.rules.underline_close = () => `</span>`;
 }
 
 function markdownItTh(md){
