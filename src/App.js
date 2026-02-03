@@ -114,40 +114,45 @@ md.renderer.rules.table_close = function(tokens, idx){
 	}
 };
 
-function markdownItRuby(md) {
-	md.inline.ruler.before('link', 'ruby', function (state, silent) {
-		const src = state.src;
-		let pos = state.pos;
-		
-		if (src[pos] !== '[') return false;
-		
-		const labelStart = pos + 1;
-		let labelEnd = src.indexOf(']', labelStart);
-		
-		if (labelEnd === -1) return false;
-		
-		if (src[labelEnd + 1] !== '^' || src[labelEnd + 2] !== '(') return false;
-		
-		const rubyStart = labelEnd + 3;
-		let rubyEnd = src.indexOf(')', rubyStart);
-		
-		if (rubyEnd === -1) return false;
-		
-		if (!silent){
-			const rbText = src.slice(labelStart, labelEnd);
-			const rtText = src.slice(rubyStart, rubyEnd);
-			const token = state.push('ruby', 'ruby', 0);
-			token.meta = { rb: rbText, rt: rtText };
-		}
-		state.pos = rubyEnd + 1;
-		
-		return true;
-	});
-	
-	md.renderer.rules.ruby = function (tokens, idx){
-		const { rb, rt } = tokens[idx].meta;
-		return `<ruby><rb>${md.utils.escapeHtml(rb)}</rb><rt>${md.utils.escapeHtml(rt)}</rt></ruby>`;
-	};
+function markdownItUnderline(md){
+  md.inline.ruler.before('emphasis', 'underline', function (state, silent) {
+    const start = state.pos;
+
+    if (state.src[start] !== '+' || state.src[start + 1] !== '+') return false;
+
+    let pos = start + 2;
+    const max = state.posMax;
+
+    while (pos < max) {
+      if (state.src[pos] === '+' && state.src[pos + 1] === '+') {
+        if (!silent) {
+          const oldPos = state.pos;
+          const oldMax = state.posMax;
+
+          state.push('underline_open', 'span', 1)
+            .attrs = [['class', 'underlined']];
+
+          state.pos = start + 2;
+          state.posMax = pos;
+
+          state.md.inline.parse(state.src, state.md, state.env, state.tokens);
+
+          state.push('underline_close', 'span', -1);
+
+          state.pos = oldPos;
+          state.posMax = oldMax;
+        }
+
+        state.pos = pos + 2;
+        return true;
+      }
+      pos++;
+    }
+    return false;
+  });
+
+  md.renderer.rules.underline_open = () => `<span class="underlined">`;
+  md.renderer.rules.underline_close = () => `</span>`;
 }
 
 function markdownItUnderline(md) {
