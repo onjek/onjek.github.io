@@ -12,6 +12,7 @@ import { disassemble } from "es-hangul";
 
 const md = new MarkdownIt({ html: true })
     .use(markdownItFootnote)
+				.use(markdownItRuby)
     .use(markdownItMultimdTable, { headerless: true, rowspan: true })
     .use(markdownItUnderline)
 				.use(markdownItTh)
@@ -113,6 +114,42 @@ md.renderer.rules.table_close = function(tokens, idx){
 	}
 };
 
+function markdownItRuby(md) {
+	md.inline.ruler.before('link', 'ruby', function (state, silent) {
+		const src = state.src;
+		let pos = state.pos;
+		
+		if (src[pos] !== '[') return false;
+		
+		const labelStart = pos + 1;
+		let labelEnd = src.indexOf(']', labelStart);
+		
+		if (labelEnd === -1) return false;
+		
+		if (src[labelEnd + 1] !== '^' || src[labelEnd + 2] !== '(') return false;
+		
+		const rubyStart = labelEnd + 3;
+		let rubyEnd = src.indexOf(')', rubyStart);
+		
+		if (rubyEnd === -1) return false;
+		
+		if (!silent){
+			const rbText = src.slice(labelStart, labelEnd);
+			const rtText = src.slice(rubyStart, rubyEnd);
+			const token = state.push('ruby', 'ruby', 0);
+			token.meta = { rb: rbText, rt: rtText };
+		}
+		state.pos = rubyEnd + 1;
+		
+		return true;
+	});
+	
+	md.renderer.rules.ruby = function (tokens, idx){
+		const { rb, rt } = tokens[idx].meta;
+		return `<ruby><rb>${md.utils.escapeHtml(rb)}</rb><rt>${md.utils.escapeHtml(rt)}</rt></ruby>`;
+	};
+}
+
 function markdownItUnderline(md) {
 	md.inline.ruler.push('underline', (state, silent) => {
 		const src = state.src;
@@ -176,8 +213,7 @@ function Doc(){
                 const res = await fetch(`/api/getDoc?id=${encodeURIComponent(id)}`);
                 if(!res.ok) throw new Error('문서 불러오기 실패');
                 const text = await res.text();
-                const processed_text = text.replace(/\[([^\[\]\(\)]+)\]\^\(([^\[\]\(\)]+)\)/g, `<ruby><rb>$1</rb><rt>$2</rt></ruby>`)
-																.replace(/(?<=[^\!])\[\[([^\[\]]+)\]\]\(([^\[\]\(\)]+)\)/g, `<a href="./$2">$1</a>`)
+                const processed_text = text.replace(/(?<=[^\!])\[\[([^\[\]]+)\]\]\(([^\[\]\(\)]+)\)/g, `<a href="./$2">$1</a>`)
                 .replace(/(?<=[^\!])\[\[([^\[\]]+)\]\]/g, `<a href="./$1">$1</a>`)
                 .replace(/\!\[\[([^\[\]]+)\]\]/g, `<img src="https://onjek.github.io/data/imgs/$1">`);
                 const rendered_text = md.render(processed_text);
