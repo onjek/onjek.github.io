@@ -162,21 +162,19 @@ function markdownItUnderline(md){
     while (pos < max) {
       if (state.src[pos] === '+' && state.src[pos + 1] === '+') {
         if (!silent) {
-          const oldPos = state.pos;
-          const oldMax = state.posMax;
+          const content = state.src.slice(start + 2, pos);
 
-          state.push('underline_open', 'span', 1)
-            .attrs = [['class', 'underlined']];
+          const tokenOpen = state.push('underline_open', 'span', 1);
+          tokenOpen.attrs = [['class', 'underlined']];
 
-          state.pos = start + 2;
-          state.posMax = pos;
-
-          state.md.inline.parse(state.src, state.md, state.env, state.tokens);
+          state.md.inline.parse(
+            content,
+            state.md,
+            state.env,
+            state.tokens
+          );
 
           state.push('underline_close', 'span', -1);
-
-          state.pos = oldPos;
-          state.posMax = oldMax;
         }
 
         state.pos = pos + 2;
