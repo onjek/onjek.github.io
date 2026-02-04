@@ -146,7 +146,7 @@ function markdownItRuby(md){
 					pairs: bottomArr.map((el, i) => ({
 						rb: el,
 						rt: topArr[i]
-					}));
+					}))
 				};
 			}
 			else{
