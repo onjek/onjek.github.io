@@ -134,17 +134,44 @@ function markdownItRuby(md){
 		if (!silent){
 			const bottomText = src.slice(bottomStart, bottomEnd);
 			const topText = src.slice(topStart, topEnd);
+			
+			const bottomArr = Array.from(bottomText);
+			const topArr = topText.trim().split(/\s+/);
+			
 			const token = state.push('ruby', 'ruby', 0);
-			token.meta = { rb: bottomText, rt: topText };
+			
+			if(bottomArr.length === topArr.length){
+				token.meta = {
+					type: 'plural',
+					pairs: bottomArr.map((el, i) => ({
+						rb: el,
+						rt: topArr[i]
+					}));
+				};
+			}
+			else{
+				token.meta = {
+					type: 'singular',
+					rb: bottomText,
+					rt: topText
+				};
+			}
 		}
 		state.pos = topEnd + 1;
 		
 		return true;
 	});
 	md.renderer.rules.ruby = function (tokens, idx){
-		const { rb, rt } = tokens[idx].meta;
+		const meta = tokens[idx].meta;
 		
-		return `<ruby><rb>${md.utils.escapeHtml(rb)}</rb><rt>${md.utils.escapeHtml(rt)}</rt></ruby>`;
+		if(meta.type == 'plural'){
+			return meta.pairs.map(({rb, rt}) =>
+				`<ruby><rb>${md.utils.escapeHtml(rb)}</rb><rt>${md.utils.escapeHtml(rt)}</rt></ruby>`
+			).join('');
+		}
+		else{
+			return `<ruby><rb>${md.utils.escapeHtml(meta.rb)}</rb><rt>${md.utils.escapeHtml(meta.rt)}</rt></ruby>`;
+		}
 	};
 }
 
