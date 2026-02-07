@@ -99,6 +99,8 @@ md.renderer.rules.text = function(tokens, idx, options, env, self){
 	return defaultTextRenderer(tokens, idx, options, env, self);
 }
 
+md.renderer.rules['text-sep'] = () => '';
+
 let depth = 0;
 
 md.renderer.rules.table_open = function(tokens, idx){
