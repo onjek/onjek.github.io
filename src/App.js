@@ -138,6 +138,10 @@ function markdownItRuby(md){
 			const bottomArr = Array.from(bottomText);
 			const topArr = topText.trim().split(/\s+/);
 			
+			const textToken = state.push('text', '', 0);
+			textToken.content = bottomText;
+			textToken.hidden = true;
+			
 			const token = state.push('ruby', 'ruby', 0);
 			
 			if(bottomArr.length === topArr.length){
