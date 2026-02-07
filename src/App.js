@@ -29,6 +29,17 @@ const md = new MarkdownIt({ html: true })
 						return '</details></div>';
 					}
 				})
+				.use(markdownItContainer, 'tag', {
+        render: function(tokens, idx){
+            const token = tokens[idx];
+            if(token.nesting === 1){
+                return '<span class="tag">\n';
+            }
+            else{
+                return '</span>\n';
+            }
+        }
+    })
     .use(markdownItContainer, 'info', {
         render: function(tokens, idx){
             const token = tokens[idx];
