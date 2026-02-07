@@ -15,6 +15,7 @@ const md = new MarkdownIt({ html: true })
 				.use(markdownItRuby)
     .use(markdownItMultimdTable, { headerless: true, rowspan: true })
     .use(markdownItUnderline)
+				.use(markdownItTag)
 				.use(markdownItTh)
 				.use(markdownItAnchor, {
 					slugify: s => uslug(s)
@@ -29,17 +30,6 @@ const md = new MarkdownIt({ html: true })
 						return '</details></div>';
 					}
 				})
-				.use(markdownItContainer, 'tag', {
-        render: function(tokens, idx){
-            const token = tokens[idx];
-            if(token.nesting === 1){
-                return '<span class="tag">\n';
-            }
-            else{
-                return '</span>\n';
-            }
-        }
-    })
     .use(markdownItContainer, 'info', {
         render: function(tokens, idx){
             const token = tokens[idx];
@@ -213,30 +203,74 @@ function markdownItUnderline(md){
 		const max = state.posMax;
 		let i = start + 2;
 		
-		while (i < max) {
+		while (i < max){
 			if (state.src[i] === '+' && state.src[i + 1] === '+') {
-				if (!silent) {
-					const content = state.src.slice(start + 2, i);
+				if (!silent){
+					const content = src.slice(start + 2, i);
 					const tokenOpen = state.push('underline_open', 'span', 1);
 					tokenOpen.attrs = [['class', 'underlined']];
+					
+					const children = [];
 					
 					state.md.inline.parse(
 						content,
 						state.md,
 						state.env,
-						state.tokens
+						children
 					);
+					for (let j = 0; j < children.length; j++){
+						state.tokens.push(children[j]);
+					}
 					state.push('underline_close', 'span', -1);
 				}
 				state.pos = i + 2;
+				
 				return true;
 			}
 			i++;
 		}
 		return false;
 	});
-	md.renderer.rules.underline_open = () => `<span class="underlined">`;
-	md.renderer.rules.underline_close = () => `</span>`;
+}
+
+function markdownItTag(md){
+	md.inline.ruler.after('underline', 'tag', function (state, silent){
+		const src = state.src;
+		const start = state.pos;
+		
+		if (src[start] !== '[' || src[start + 1] !== ':') return false;
+		
+		const max = state.posMax;
+		let i = start + 2;
+		
+		while (i < max){
+			if (state.src[i] === ']'){
+				if (!silent){
+					const content = src.slice(start + 2, i);
+					const tagOpen = state.push('tag_open', 'span', 1);
+					tagOpen.attrs = [['class', 'tag']];
+					
+					const children = [];
+					state.md.inline.parse(
+						content,
+						state.md,
+						state.env,
+						children
+						);
+						
+						for (let j = 0; j < children.length; j++){
+							state.tokens.push(children[j]);
+						}
+						state.push('tag_close', 'span', -1);
+					}
+					state.pos = i + 1;
+					
+					return true;
+				}
+				i++;
+			}
+			return false;
+		});
 }
 
 function markdownItTh(md){
