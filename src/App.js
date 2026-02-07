@@ -204,7 +204,7 @@ function markdownItUnderline(md){
 		let i = start + 2;
 		
 		while (i < max){
-			if (state.src[i] === '+' && state.src[i + 1] === '+') {
+			if (src[i] === '+' && src[i + 1] === '+') {
 				if (!silent){
 					const content = src.slice(start + 2, i);
 					const tokenOpen = state.push('underline_open', 'span', 1);
@@ -244,7 +244,7 @@ function markdownItTag(md){
 		let i = start + 2;
 		
 		while (i < max){
-			if (state.src[i] === ']'){
+			if (src[i] === ']'){
 				if (!silent){
 					const content = src.slice(start + 2, i);
 					const tagOpen = state.push('tag_open', 'span', 1);
