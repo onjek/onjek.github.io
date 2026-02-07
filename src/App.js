@@ -90,6 +90,13 @@ const md = new MarkdownIt({ html: true })
         }
     });
 
+md.renderer.rules.text = function(tokens, idx){
+	if(tokens[idx].hidden){
+		return '';
+	}
+	return md.utils.escapeHtml(tokens[idx].content);
+}
+
 let depth = 0;
 
 md.renderer.rules.table_open = function(tokens, idx){
