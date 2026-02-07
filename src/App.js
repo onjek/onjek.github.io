@@ -93,7 +93,7 @@ const md = new MarkdownIt({ html: true })
 const defaultTextRenderer = md.renderer.rules.text;
 
 md.renderer.rules.text = function(tokens, idx, options, env, self){
-	if(tokens[idx].attrGet('data-hidden')){
+	if(tokens[idx].meta && tokes[idx].meta.hidden){
 		return '';
 	}
 	return defaultTextRenderer(tokens, idx, options, env, self);
@@ -149,7 +149,7 @@ function markdownItRuby(md){
 			
 			const textToken = state.push('text', '', 0);
 			textToken.content = bottomText;
-			textToken.attrSet('data-hidden', true);
+			textToken.meta = { hidden: true };
 			
 			const token = state.push('ruby', 'ruby', 0);
 			
