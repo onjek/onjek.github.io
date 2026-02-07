@@ -93,7 +93,7 @@ const md = new MarkdownIt({ html: true })
 const defaultTextRenderer = md.renderer.rules.text;
 
 md.renderer.rules.text = function(tokens, idx, options, env, self){
-	if(tokens[idx].meta && tokes[idx].meta.hidden){
+	if(tokens[idx].meta && tokens[idx].meta.hidden){
 		return '';
 	}
 	return defaultTextRenderer(tokens, idx, options, env, self);
