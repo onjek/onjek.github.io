@@ -146,6 +146,8 @@ function markdownItRuby(md){
 			
 			const bottomArr = Array.from(bottomText);
 			const topArr = topText.trim().split(/\s+/);
+
+			const sepToken = state.push('text-sep', '', 0);
 			
 			const textToken = state.push('text', '', 0);
 			textToken.content = bottomText;
