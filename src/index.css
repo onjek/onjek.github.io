@@ -256,6 +256,12 @@ th{
   background-color: #F7F9FC;
 }
 
+.tag{
+  padding: 2px 0;
+  outline: 1px solid #303133;
+  font-size: 14px;
+}
+
 .info{
   box-sizing: border-box;
   margin: 12px 0;
