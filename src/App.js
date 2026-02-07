@@ -90,11 +90,13 @@ const md = new MarkdownIt({ html: true })
         }
     });
 
-md.renderer.rules.text = function(tokens, idx){
+const defaultTextRenderer = md.renderer.rules.text;
+
+md.renderer.rules.text = function(tokens, idx, options, env, self){
 	if(tokens[idx].hidden){
 		return '';
 	}
-	return md.utils.escapeHtml(tokens[idx].content);
+	return defaultTextRenderer(tokens, idx, options, env, self);
 }
 
 let depth = 0;
