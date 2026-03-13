@@ -5,18 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Math:wght@400&display=swap');
 @font-face {
-  font-family: 'Noto Sans KR';
-  font-weight: normal;
-  font-display: swap;
-  src: url('./assets/fonts/NotoSansKRRegular.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-weight: bold;
-  font-display: swap;
-  src: url('./assets/fonts/NotoSansKRSemiBold.ttf') format('truetype');
-}
-@font-face {
   font-family: 'Fira Sans';
   font-weight: normal;
   font-style: normal;
@@ -56,6 +44,32 @@
   font-display: swap;
   src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-SemiBold.woff2') format('woff2');
 }
+@font-face {
+  font-family: 'Plan Gothic P1';
+  font-weight: regular;
+  font-style: normal;
+  font-display: swap;
+  src: url('./assets/fonts/PlanGothicP1Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Plan Gothic P2';
+  font-weight: regular;
+  font-style: normal;
+  font-display: swap;
+  src: url('./assets/fonts/PlanGothicP2Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: normal;
+  font-display: swap;
+  src: url('./assets/fonts/NotoSansKRRegular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: bold;
+  font-display: swap;
+  src: url('./assets/fonts/NotoSansKRSemiBold.ttf') format('truetype');
+}
 
 ::-webkit-scrollbar{
   display: none;
@@ -69,7 +83,8 @@ body{
   margin: 0;
   color: #303133;
   font-family: 'Noto Sans', 'Fira Sans', 'Pretendard',
-  'Noto Sans KR', 'Noto Sans TC', 'Noto Sans JP', 'Noto Sans SC', 'Noto Sans HK', 'Noto Sans Math';
+  'Noto Sans KR', 'Noto Sans TC', 'Noto Sans JP', 'Noto Sans SC', 'Noto Sans HK', 'Noto Sans Math',
+  'Plan Gothic P1', 'Plan Gothic P2';
   line-height: 1.5;
 }
 
