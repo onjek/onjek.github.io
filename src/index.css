@@ -46,14 +46,14 @@
 }
 @font-face {
   font-family: 'Plan Gothic P1';
-  font-weight: regular;
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
   src: url('./assets/fonts/PlanGothicP1Regular.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Plan Gothic P2';
-  font-weight: regular;
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
   src: url('./assets/fonts/PlanGothicP2Regular.ttf') format('truetype');
