@@ -49,14 +49,14 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-  src: url('./assets/fonts/PlanGothicP1Regular.ttf') format('truetype');
+  src: url('./assets/fonts/PlanGothicP1Regular.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Plan Gothic P2';
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-  src: url('./assets/fonts/PlanGothicP2Regular.ttf') format('truetype');
+  src: url('./assets/fonts/PlanGothicP2Regular.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Noto Sans KR';
