@@ -41,6 +41,17 @@ const md = new MarkdownIt({ html: true })
             }
         }
     })
+				.use(markdownItContainer, 'box', {
+        render: function(tokens, idx){
+            const token = tokens[idx];
+            if(token.nesting === 1){
+                return '<div class="box">\n';
+            }
+            else{
+                return '</div>\n';
+            }
+        }
+    })
 				.use(markdownItContainer, 'tab', {
         render: function(tokens, idx, options, env){
             const token = tokens[idx];
@@ -331,6 +342,13 @@ function Doc(){
     );
 }
 
+function getSearchList(doclist, target){
+	const dTarget = disassemble(target);
+	const stTarget = doclist.filter(doc => disassemble(doc.name).startsWith(dTarget)).sort((a, b) => a.name.length - b.name.length);
+	const inTarget = doclist.filter(doc => disassemble(doc.name).includes(dTarget) && !stTarget.includes(doc)).sort((a, b) => a.name.length - b.name.length);
+	return [...stTarget, ...inTarget].slice(0, 5);
+}
+
 export default function App() {
     const [doclist, setDoclist] = useState([]);
     const [target, setTarget] = useState('');
@@ -343,7 +361,9 @@ export default function App() {
                 const res = await fetch(`/api/getDoclist`);
                 if(!res.ok) throw new Error('문서 목록 불러오기 실패');
                 const json = await res.json();
-                setDoclist(json[0].contents);
+																let templist = json[0].contents;
+																templist = templist.map(doc => ({...doc, name: doc.name.replace('.md', '')}));
+                setDoclist(templist);
             } catch(err) {
                 console.log(`에러: ${err.message}`);
             }
@@ -370,8 +390,8 @@ export default function App() {
             </nav>
             {visibility && (
             <div id="searchlist">
-                {doclist.filter(doc => disassemble(doc.name).startsWith(disassemble(target))).sort((a, b) => a.name.length - b.name.length).slice(0, 5).map(doc => (
-                    <Link to={`/doc/${doc.name.replace('.md', '')}`} key={doc.name.replace('.md', '')}><div>{doc.name.replace('.md', '')}</div></Link>
+                {getSearchList(doclist, target).map(doc => (
+                    <Link to={`/doc/${doc.name}`} key={doc.name}><div>{doc.name}</div></Link>
                 ))}
             </div>
             )}
