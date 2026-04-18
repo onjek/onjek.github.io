@@ -255,6 +255,10 @@ th, td{
   border: 1px solid #DADEE6;
 }
 
+.borderless th, .borderless td{
+  border: none;
+}
+
 th{
   background-color: #F7F9FC;
 }
