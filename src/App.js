@@ -52,6 +52,28 @@ const md = new MarkdownIt({ html: true })
             }
         }
     })
+				.use(markdownItContainer, 'borderless', {
+        render: function(tokens, idx){
+            const token = tokens[idx];
+            if(token.nesting === 1){
+                return '<div class="borderless">\n';
+            }
+            else{
+                return '</div>\n';
+            }
+        }
+    })
+				.use(markdownItContainer, 'dashed', {
+        render: function(tokens, idx){
+            const token = tokens[idx];
+            if(token.nesting === 1){
+                return '<div class="dashed">\n';
+            }
+            else{
+                return '</div>\n';
+            }
+        }
+    })
 				.use(markdownItContainer, 'tab', {
         render: function(tokens, idx, options, env){
             const token = tokens[idx];
