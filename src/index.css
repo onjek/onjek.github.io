@@ -164,15 +164,10 @@ rt{
 }
 
 blockquote{
-  box-sizing: border-box;
   margin: 24px 0;
   padding: 12px 24px;
-  max-width: calc(100% - 18px);
-  width: max-content;
-  border-radius: 6px;
-  border: 1px solid #DADEE6;
+  border-left: 4px solid #303133;
   color: #5C5F66;
-  box-shadow: 0 4px 8px 0 #DADEE640;
 }
 
 blockquote p{
@@ -247,13 +242,6 @@ details[open]>summary>h2, details[open]>summary>h3{
   overflow-x: auto;
 }
 
-.table-border{
-  width: max-content;
-  border-radius: 6px;
-  border: 1px solid #DADEE6;
-  overflow: clip;
-}
-
 table{
   width: max-content;
   border-collapse: collapse;
@@ -264,7 +252,7 @@ th, td{
   padding: 8px 16px;
   min-width: 16px;
   height: 32px;
-  outline: 0.5px solid #DADEE6;
+  border: 1px solid #DADEE6;
 }
 
 th{
@@ -289,6 +277,15 @@ th{
 
 .info p{
   margin: 0;
+}
+
+.box{
+  box-sizing: border-box;
+  margin: 12px 0;
+  padding: 8px 16px;
+  border: 1px solid #DADEE6;
+  max-width: max(320px, calc(100% - 40px));
+  width: max-content;
 }
 
 .tab{
