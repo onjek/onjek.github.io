@@ -292,6 +292,14 @@ th{
   width: max-content;
 }
 
+.borderless div{
+  border: none;
+}
+
+.dashed div{
+  border-style: dashed
+}
+
 .tab{
   display: flex;
   flex-wrap: wrap;
